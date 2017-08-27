@@ -10,10 +10,7 @@ export default class MainView extends Component {
   static propTypes = {
     route: PropTypes.object
   }
-  render () {
-    document.addEventListener('touchmove', function (e) {
-      e.preventDefault()
-    })
+  renderRandomLine () {
     var c = document.getElementsByTagName('canvas')[0] // 获取canvas元素
     var x = c.getContext('2d') // 获取context
     var pr = window.devicePixelRatio || 1 // 设备像素比：设备物理像素/设备独立像素
@@ -28,7 +25,6 @@ export default class MainView extends Component {
     var z = m.random // 随机函数
     c.width = w * pr // context宽度
     c.height = h * pr // context高度
-    console.log(pr)
     x.scale(pr, pr)
     x.globalAlpha = 0.6
     function i () {
@@ -55,18 +51,24 @@ export default class MainView extends Component {
       var t = p + (z() * 2 - 1.1) * f
       return (t > h || t < 0) ? y(p) : t
     }
-    document.onclick = i
-    document.ontouchstart = i
     i()
+  }
+  jump = (args) => () => {
+    console.log(args)
+  }
+  componentDidMount () {
+    this.renderRandomLine()
+  }
+  render () {
     return (
       <div className='main-view'>
         <canvas id="bgCanvas" />
         <div className="choose">
-          <div className="btn">
+          <div className="btn" onClick={this.jump('admin')}>
             <img src="https://zos.alipayobjects.com/rmsportal/LvYKhbKsPzIRLGsBxUJA.png" alt="img" className="img" />
             中后台网站
           </div>
-          <div className="btn">
+          <div className="btn" onClick={this.jump('show')}>
             展示型网站
           </div>
         </div>
