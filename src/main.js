@@ -4,6 +4,7 @@ import App from './App'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import store from '$redux/store'
+import 'antd/dist/antd.css'
 
 const render = Component => {
   ReactDOM.render(

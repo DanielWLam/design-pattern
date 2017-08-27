@@ -1,6 +1,8 @@
 import MainView from 'views/MainView'
 import SyncView from 'views/SyncView'
 import Loadable from 'react-loadable'
+import AdminView from 'views/AdminView'
+import ShowView from 'views/showView'
 
 export default [
   {
@@ -19,6 +21,14 @@ export default [
           // you should consider add it here
           LoadingComponent: () => null
         })
+      },
+      {
+        path: 'show',
+        component: ShowView
+      },
+      {
+        path: 'admin',
+        component: AdminView
       }
     ]
   }
